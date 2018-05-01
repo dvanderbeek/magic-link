@@ -32,29 +32,3 @@ module Magic
     end
   end
 end
-
-
-class MagicLink
-  include ActiveModel::Model
-
-  attr_accessor :email, :token
-
-  def send_login_instructions
-    token = set_sign_in_token
-    send_reset_password_instructions_notification(token) if token
-    token
-  end
-
-  private
-    def customer
-      @customer ||= Customer.find_by(email: email.downcase)
-    end
-
-    def send_reset_password_instructions_notification(token)
-      puts "SENDING LOGIN INSTRUCTIONS WITH TOKEN #{token}"
-    end
-
-    def set_sign_in_token
-
-    end
-end
