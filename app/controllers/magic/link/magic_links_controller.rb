@@ -1,6 +1,6 @@
 module Magic
   module Link
-    class MagicLinksController < ApplicationController
+    class MagicLinksController < ::ApplicationController
       def new
         redirect_to root_path, notice: "You are already signed in" if customer_signed_in?
         @magic_link = MagicLink.new
