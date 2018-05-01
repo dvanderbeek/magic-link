@@ -21,6 +21,15 @@ Or install it yourself as:
 $ gem install magic-link
 ```
 
+For now, assumes you have a Devise model named Customer
+
+Add `sign_in_token` and `sign_in_token_sent_at` to Customer
+
+mount the engine
+```ruby
+mount Magic::Links::Engine, at: '/'
+```
+
 ## Contributing
 Contribution directions go here.
 

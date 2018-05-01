@@ -9,14 +9,15 @@ Gem::Specification.new do |s|
   s.version     = Magic::Link::VERSION
   s.authors     = ["David Van Der Beek"]
   s.email       = ["earlynovrock@gmail.com"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of Magic::Link."
-  s.description = "TODO: Description of Magic::Link."
+  s.homepage    = "https://github.com/dvanderbeek/magic-link"
+  s.summary     = "Devise magic sign in links"
+  s.description = "Devise magic sign in links"
   s.license     = "MIT"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
 
-  s.add_dependency "rails", "~> 5.2.0"
+  s.add_dependency "rails", ">= 5"
+  s.add_dependency "devise", ">= 4"
 
   s.add_development_dependency "sqlite3"
 end
