@@ -21,7 +21,7 @@ module Magic
         end
 
         def set_sign_in_token
-          if user && (user.sign_in_token.blank? || user.sign_in_token_sent_at < 6.hours.ago)
+          if user && (user.sign_in_token.blank? || user.sign_in_token_sent_at < Magic::Link.token_expiration_hours.hours.ago)
             raw, enc = Devise.token_generator.generate(Magic::Link.user_class, :sign_in_token)
             user.sign_in_token = enc
             user.sign_in_token_sent_at = Time.current

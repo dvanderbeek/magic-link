@@ -10,6 +10,9 @@ module Magic
     mattr_accessor :email_from
     @@email_from = "please-change-me@magic-link.com"
 
+    mattr_accessor :token_expiration_hours
+    @@token_expiration_hours = 6
+
     class << self
       def configure
         yield self

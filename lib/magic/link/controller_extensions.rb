@@ -10,21 +10,21 @@ module Magic
           email = params[:email].presence
           user  = email && Magic::Link.user_class.find_by(email: email)
 
-          if user && token_matches?(user) && token_not_expired?
+          if user && token_matches?(user) && token_not_expired?(user)
             user.update_columns(sign_in_token: nil, sign_in_token_sent_at: nil)
             sign_in user
           end
         end
 
-        def token_mathces?(user)
+        def token_matches?(user)
           Devise.secure_compare(
             user.sign_in_token,
             Devise.token_generator.digest(Magic::Link.user_class, :sign_in_token, params[:sign_in_token])
           )
         end
 
-        def token_not_expired?
-          user.sign_in_token_sent_at >= 6.seconds.ago
+        def token_not_expired?(user)
+          user.sign_in_token_sent_at >= Magic::Link.token_expiration_hours.hours.ago
         end
       end
     end
