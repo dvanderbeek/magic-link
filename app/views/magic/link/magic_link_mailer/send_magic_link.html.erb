@@ -1,1 +1,5 @@
-<%= @token %>
+<p>Hey there! Here is your sign in link:</p>
+
+<p><%= link_to "Sign In", main_app.root_url(email: @email, sign_in_token: @token) %></p>
+
+<p>Thanks!</p>
