@@ -17,7 +17,7 @@ module Magic
         end
 
         def send_reset_password_instructions_notification(token)
-          puts "SENDING LOGIN INSTRUCTIONS WITH TOKEN #{token}"
+          MagicLinkMailer.send_magic_link(email, token)
         end
 
         def set_sign_in_token

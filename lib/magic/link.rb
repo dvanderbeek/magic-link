@@ -7,6 +7,9 @@ module Magic
     mattr_accessor :user_class
     @@user_class = "User"
 
+    mattr_accessor :email_from
+    @@email_from = "please-change-me@magic-link.com"
+
     class << self
       def configure
         yield self
