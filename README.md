@@ -29,7 +29,7 @@ Magic::Link.configure do |config|
 end
 ```
 
-Add `sign_in_token` and `sign_in_token_sent_at` to Customer
+Add `sign_in_token` and `sign_in_token_sent_at` to your user class
 
 mount the engine
 ```ruby
