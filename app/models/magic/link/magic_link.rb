@@ -2,7 +2,7 @@ module Magic
   module Link
     class MagicLink
       include ActiveModel::Model
-      attr_accessor :email, :token
+      attr_accessor :email
 
       def send_login_instructions
         token = set_sign_in_token
