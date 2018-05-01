@@ -21,13 +21,26 @@ Or install it yourself as:
 $ gem install magic-link
 ```
 
-For now, assumes you have a Devise model named Customer
+configure your Devise user class if it isn't User
+```ruby
+# config/initializers/magic_link.rb
+Magic::Link.configure do |config|
+  config.user_class = "Customer"
+end
+```
 
 Add `sign_in_token` and `sign_in_token_sent_at` to Customer
 
 mount the engine
 ```ruby
 mount Magic::Links::Engine, at: '/'
+```
+
+include helper so links in layout continue working
+```ruby
+class ApplicationController < ActionController::Base
+  helper Magic::Link::ApplicationHelper
+end
 ```
 
 ## Contributing

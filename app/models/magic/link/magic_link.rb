@@ -12,8 +12,8 @@ module Magic
 
       private
 
-        def customer
-          @customer ||= Customer.find_by(email: email.downcase)
+        def user
+          @user ||= Magic::Link.user_class.find_by(email: email.downcase)
         end
 
         def send_reset_password_instructions_notification(token)
@@ -21,11 +21,11 @@ module Magic
         end
 
         def set_sign_in_token
-          if customer && customer.sign_in_token.blank? || customer.sign_in_token_sent_at < 6.hours.ago
-            raw, enc = Devise.token_generator.generate(Customer, :sign_in_token)
-            customer.sign_in_token = enc
-            customer.sign_in_token_sent_at = Time.current
-            customer.save(validate: false)
+          if user && user.sign_in_token.blank? || user.sign_in_token_sent_at < 6.hours.ago
+            raw, enc = Devise.token_generator.generate(Magic::Link.user_class, :sign_in_token)
+            user.sign_in_token = enc
+            user.sign_in_token_sent_at = Time.current
+            user.save(validate: false)
             raw
           end
         end
