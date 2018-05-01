@@ -1,5 +1,10 @@
-<div style="height: 60px;"></div>
-<%= simple_form_for @magic_link do |f| %>
-  <%= f.input :email, label: "Enter your email", autofocus: true %>
-  <%= f.submit "Email me a sign in link", class: "btn btn-primary" %>
-<% end %>
+<div class="row pt-5">
+  <div class="col-md-6 offset-md-3">
+    <%= simple_form_for @magic_link do |f| %>
+      <%= f.input :email, label: "Enter your email", autofocus: true %>
+      <%= f.submit "Email me a sign in link", class: "btn btn-primary btn-block" %>
+    <% end %>
+    <br>
+    <%= link_to "Back", :back %>
+  </div>
+</div>
