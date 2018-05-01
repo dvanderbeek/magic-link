@@ -7,6 +7,7 @@ configure your Devise user class if it isn't User
 # config/initializers/magic_link.rb
 Magic::Link.configure do |config|
   config.user_class = "Customer"
+  config.email_from = "test@yourapp.com"
 end
 ```
 
