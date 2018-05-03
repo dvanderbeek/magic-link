@@ -6,7 +6,7 @@ module Magic
 
       def send_login_instructions
         token = set_sign_in_token
-        send_reset_password_instructions_notification(token) if token
+        send_magic_link_email(token) if token
         token
       end
 
@@ -16,7 +16,7 @@ module Magic
           @user ||= Magic::Link.user_class.find_by(email: email.downcase)
         end
 
-        def send_reset_password_instructions_notification(token)
+        def send_magic_link_email(token)
           MagicLinkMailer.send_magic_link(email, token).deliver_later
         end
 
