@@ -2,12 +2,13 @@
 Short description and motivation.
 
 ## Usage
-configure your Devise user class if it isn't User
+configure the gem
 ```ruby
 # config/initializers/magic_link.rb
 Magic::Link.configure do |config|
-  config.user_class = "Customer"
+  config.user_class = "Customer" # Default is User
   config.email_from = "test@yourapp.com"
+  config.token_expiration_hours = 6 # Default is 6
 end
 ```
 
@@ -27,7 +28,8 @@ end
 ```
 
 Now users can visit `/magic_links/new` to enter their email and have a sign in
-link sent to them via email
+link sent to them via email. Tokens are cleared after use and expire after the
+configured number of hours
 
 ## Installation
 Add this line to your application's Gemfile:
