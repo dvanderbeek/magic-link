@@ -8,11 +8,16 @@ module Magic
       module InstanceMethods
         def authenticate_user_from_token!
           email = params[:email].presence
-          user  = email && Magic::Link.user_class.find_by(email: email)
+          token = params[:sign_in_token].presence
+          user  = email && token && Magic::Link.user_class.find_by(email: email)
 
           if user && token_matches?(user) && token_not_expired?(user)
+            flash[:notice] = "You have signed in successfully"
             user.update_columns(sign_in_token: nil, sign_in_token_sent_at: nil)
             sign_in user
+          elsif email && token
+            flash[:alert] = "Your sign in token has already been used or is expired"
+            redirect_to main_app.root_path
           end
         end
 
