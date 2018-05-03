@@ -14,7 +14,7 @@ module Magic
           if user && token_matches?(user) && token_not_expired?(user)
             flash[:notice] = "You have signed in successfully"
             user.update_columns(sign_in_token: nil, sign_in_token_sent_at: nil)
-            sign_in user
+            sign_in_and_redirect user
           elsif email && token
             flash[:alert] = "Your sign in token has already been used or is expired"
             redirect_to main_app.root_path
