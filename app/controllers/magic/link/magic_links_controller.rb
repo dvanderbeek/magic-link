@@ -1,10 +1,8 @@
 module Magic
   module Link
     class MagicLinksController < ::ApplicationController
+      before_action :check_user, only: :new
       def new
-        if send("#{Magic::Link.user_class.name.downcase}_signed_in?")
-          redirect_to main_app.root_path, notice: "You are already signed in"
-        end
         @magic_link = MagicLink.new
       end
 
@@ -15,6 +13,12 @@ module Magic
       end
 
       private
+
+        def check_user
+          if send("#{Magic::Link.user_class.name.downcase}_signed_in?")
+            redirect_to main_app.root_path, notice: "You are already signed in"
+          end
+        end
 
         def permitted_params
           params.fetch(:magic_link, {}).permit(:email)
