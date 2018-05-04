@@ -16,7 +16,7 @@ module Magic
             user.update_columns(sign_in_token: nil, sign_in_token_sent_at: nil)
             sign_in_and_redirect user
           elsif email && token
-            flash[:alert] = "Your sign in token has already been used or is expired"
+            flash[:alert] = "Your sign in token is invalid"
             redirect_to main_app.root_path
           end
         end

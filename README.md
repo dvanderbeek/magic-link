@@ -19,14 +19,6 @@ mount the engine
 mount Magic::Links::Engine, at: '/'
 ```
 
-include helper so links in layout continue working
-```ruby
-class ApplicationController < ActionController::Base
-  helper Magic::Link::ApplicationHelper
-  before_action :authenticate_user_from_token!
-end
-```
-
 Now users can visit `/magic_links/new` to enter their email and have a sign in
 link sent to them via email. Tokens are cleared after use and expire after the
 configured number of hours
