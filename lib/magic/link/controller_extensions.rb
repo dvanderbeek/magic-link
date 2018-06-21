@@ -11,7 +11,9 @@ module Magic
           token = params[:sign_in_token].presence
           user  = email && token && Magic::Link.user_class.find_by(email: email)
 
-          if user && token_matches?(user) && token_not_expired?(user)
+          if send("#{Magic::Link.user_class.name.underscore}_signed_in?")
+            flash.now[:alert] = "You are already signed in"
+          elsif user && token_matches?(user) && token_not_expired?(user)
             flash[:notice] = "You have signed in successfully"
             user.update_columns(sign_in_token: nil, sign_in_token_sent_at: nil)
             sign_in user
