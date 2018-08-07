@@ -16,7 +16,7 @@ Add `sign_in_token` and `sign_in_token_sent_at` to your Devise class
 
 mount the engine
 ```ruby
-mount Magic::Links::Engine, at: '/'
+mount Magic::Link::Engine, at: '/'
 ```
 
 Now users can visit `/magic_links/new` to enter their email and have a sign in
