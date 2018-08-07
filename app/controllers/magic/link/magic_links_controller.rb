@@ -16,7 +16,7 @@ module Magic
       private
 
         def check_user
-          if send("#{Magic::Link.user_class.name.downcase}_signed_in?")
+          if send("#{Magic::Link.user_class.name.underscore}_signed_in?")
             redirect_to main_app.root_path, notice: "You are already signed in"
           end
         end
