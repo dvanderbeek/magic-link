@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    magic-link (0.1.0)
+    magic-link (0.2.0)
       devise (>= 4.7.1)
       rails (>= 5.2.2.1)
 
