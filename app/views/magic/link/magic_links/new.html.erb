@@ -1,7 +1,11 @@
 <div class="row">
   <div class="col-md-6 offset-md-3">
-    <%= simple_form_for @magic_link do |f| %>
-      <%= f.input :email, label: "Enter your email", autofocus: true %>
+    <%= form_for @magic_link do |f| %>
+      <div class="field">
+        <%= f.label :email %><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      </div>
+
       <%= f.submit "Email me a sign in link", class: "btn btn-primary btn-block" %>
     <% end %>
     <br>
