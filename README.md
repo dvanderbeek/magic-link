@@ -19,7 +19,7 @@ mount the engine
 mount Magic::Link::Engine, at: '/'
 ```
 
-Now users can visit `/magic_links/new` to enter their email and have a sign in
+Now users can visit `/magic_links/new` (which you can link to with `magic_link.new_magic_link_path`) to enter their email and have a sign in
 link sent to them via email. Tokens are cleared after use and expire after the
 configured number of hours
 
