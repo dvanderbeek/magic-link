@@ -1,5 +1,5 @@
 Hey there! Here is your sign in link (you can only use it once):
 
-<%= main_app.root_url(email: @email, sign_in_token: @token) %>
+<%= magic_link.authenticate_url(email: @email, sign_in_token: @token) %>
 
 Thanks!

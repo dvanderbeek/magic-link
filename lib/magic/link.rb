@@ -1,5 +1,4 @@
 require "magic/link/engine"
-require "magic/link/controller_extensions"
 require "magic/link/railtie"
 
 module Magic
@@ -12,6 +11,9 @@ module Magic
 
     mattr_accessor :token_expiration_hours
     @@token_expiration_hours = 6
+
+    mattr_accessor :after_sign_in_path
+    @@after_sign_in_path = "root_path"
 
     class << self
       def configure
