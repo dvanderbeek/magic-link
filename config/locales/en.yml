@@ -1,0 +1,9 @@
+en:
+  magic_links:
+    check_email: "Check your email for a sign in link!"
+    signed_in: "You have signed in successfully"
+    already_signed_in: "You are already signed in"
+    token_invalid: "Your sign in token is invalid"
+    mailer:
+      magic_link:
+        subject: "Your sign in link"

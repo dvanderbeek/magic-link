@@ -11,7 +11,7 @@ module Magic
       def create
         @magic_link = MagicLink.new(permitted_params)
         @magic_link.send_login_instructions
-        redirect_to main_app.root_path, notice: "Check your email for a sign in link!"
+        redirect_to main_app.root_path, notice: I18n.t('magic_links.check_email')
       end
 
       def authenticate
@@ -21,15 +21,15 @@ module Magic
 
         # TODO: Handle a different user trying to sign in
         if token && send("#{Magic::Link.user_class.name.underscore}_signed_in?")
-          flash[:alert] = "You are already signed in"
+          flash[:alert] = I18n.t('magic_links.already_signed_in')
           redirect_to main_app.send(Magic::Link.after_sign_in_path)
         elsif user && token_matches?(user) && token_not_expired?(user)
-          flash[:notice] = "You have signed in successfully"
+          flash[:notice] = I18n.t('magic_links.signed_in')
           user.update_columns(sign_in_token: nil, sign_in_token_sent_at: nil)
           sign_in user
           redirect_to main_app.send(Magic::Link.after_sign_in_path)
         elsif email && token
-          flash[:alert] = "Your sign in token is invalid"
+          flash[:alert] = I18n.t('magic_links.token_invalid')
           redirect_to magic_link.new_magic_link_path
         end
       end
@@ -38,7 +38,7 @@ module Magic
 
         def check_user
           if send("#{Magic::Link.user_class.name.underscore}_signed_in?")
-            redirect_to main_app.root_path, notice: "You are already signed in"
+            redirect_to main_app.root_path, notice: I18n.t('magic_links.already_signed_in')
           end
         end
 
