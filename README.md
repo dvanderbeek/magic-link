@@ -9,6 +9,7 @@ Magic::Link.configure do |config|
   config.user_class = "Customer" # Default is User
   config.email_from = "test@yourapp.com"
   config.token_expiration_hours = 6 # Default is 6
+  config.force_new_tokens = false # Default is false
 end
 ```
 
