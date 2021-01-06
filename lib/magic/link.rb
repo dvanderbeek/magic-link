@@ -15,6 +15,12 @@ module Magic
     mattr_accessor :after_sign_in_path
     @@after_sign_in_path = "root_path"
 
+    mattr_accessor :force_new_tokens
+    @@force_new_tokens = false
+
+    mattr_accessor :force_user_change
+    @@force_user_change = false
+
     class << self
       def configure
         yield self

@@ -20,7 +20,7 @@ module Magic
         user  = email && token && Magic::Link.user_class.find_by(email: email)
 
         # TODO: Handle a different user trying to sign in
-        if token && send("#{Magic::Link.user_class.name.underscore}_signed_in?")
+        if !Magic::Link.force_user_change && token && send("#{Magic::Link.user_class.name.underscore}_signed_in?")
           flash[:alert] = "You are already signed in"
           redirect_to main_app.send(Magic::Link.after_sign_in_path)
         elsif user && token_matches?(user) && token_not_expired?(user)

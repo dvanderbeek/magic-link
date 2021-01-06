@@ -20,7 +20,7 @@ module Magic
           MagicLinkMailer.send_magic_link(email, token).deliver_later
         end
 
-        def set_sign_in_token(force: false)
+        def set_sign_in_token(force: Magic::Link.force_new_tokens)
           if user && (force || (user.sign_in_token.blank? || user.sign_in_token_sent_at < Magic::Link.token_expiration_hours.hours.ago))
             raw, enc = Devise.token_generator.generate(Magic::Link.user_class, :sign_in_token)
             user.sign_in_token = enc
