@@ -17,7 +17,7 @@ module Magic
       def authenticate
         email = params[:email].presence
         token = params[:sign_in_token].presence
-        user  = email && token && Magic::Link.user_class.find_by(email: email)
+        user  = email && token && Magic::Link.user_class.find_by("LOWER(email)= ?", email.downcase)
 
         # TODO: Handle a different user trying to sign in
         if token && send("#{Magic::Link.user_class.name.underscore}_signed_in?")
